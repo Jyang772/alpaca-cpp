@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/2689513/handling-responses-in-libcurl
+#Receiving responses
+https://stackoverflow.com/questions/2329571/c-libcurl-get-output-into-a-string
