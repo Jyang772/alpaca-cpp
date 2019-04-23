@@ -28,7 +28,7 @@ int main()
     CURL* curl = curl_easy_init();
 
     // Set remote URL.
-    curl_easy_setopt(curl, CURLOPT_URL,"https://paper-api.alpaca.markets/v1/account" );
+    curl_easy_setopt(curl, CURLOPT_URL,"https://paper-api.alpaca.markets/v1/positions" );
 
     // Don't bother trying IPv6, which would increase DNS resolution time.
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -50,6 +50,7 @@ int main()
     // std::unique_ptr<std::string> httpData(new std::string());
 
     std::stringstream httpData;
+    std::string response_string;
 
     // Hook up data handling function.
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, callback);
@@ -81,7 +82,7 @@ int main()
             std::cout << "\nJSON data received:" << std::endl;
             std::cout << jsonData.toStyledString() << std::endl;
 
-	    std::cout << noot << std::endl;
+	    //std::cout << noot << std::endl;
             const std::string dateString(jsonData["date"].asString());
             const std::size_t unixTimeMs(
                     jsonData["milliseconds_since_epoch"].asUInt64());
