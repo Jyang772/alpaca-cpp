@@ -276,3 +276,7 @@ std::vector<Asset> Tradeapi::list_assets(std::string status, std::string asset_c
 	return noot;
 }
 
+Asset Tradeapi::get_asset(std::string symbol) {
+	Json::Value resp = GET("/assets/"+symbol);
+	return Asset(resp);
+}

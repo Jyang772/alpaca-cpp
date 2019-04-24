@@ -36,6 +36,7 @@ class Tradeapi {
 
 		/* Asset */
 		std::vector<Asset> list_assets(std::string status="active",std::string asset_class="us_equity");
+		Asset get_asset(std::string);
 		
 
         private:

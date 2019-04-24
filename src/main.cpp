@@ -50,6 +50,7 @@ int main() {
 
 	//auto assets = api.list_assets();
 	//std::cout << assets.size() << std::endl;
+	//auto asset = api.get_asset("TSLA");
 
 	return 0;
 }
