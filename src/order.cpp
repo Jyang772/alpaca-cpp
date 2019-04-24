@@ -18,8 +18,8 @@ Order::Order(Json::Value data) {
 	type = data["type"].asString();
 	side = data["side"].asString();
 	time_in_force = data["time_in_force"].asString();
-	limit_price = limit_price ? 0 : std::stod(data["limit_price"].asString());
-	stop_price = stop_price ? 0 : std::stod(data["stop_price"].asString());
+	//limit_price = limit_price ? 0 : std::stod(data["limit_price"].asString());
+	//stop_price = stop_price ? 0 : std::stod(data["stop_price"].asString());
 	status = data["status"].asString();
 
 	json = data;

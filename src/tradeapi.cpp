@@ -33,6 +33,7 @@ Json::Value Tradeapi::GET(std::string req,std::string params) {
 
 	std::cout << "request: " + request << std::endl;
 
+	//curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL, request.c_str());
 	curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 	curl_easy_setopt(curl, CURLOPT_TIMEOUT,10);
@@ -85,6 +86,7 @@ Json::Value Tradeapi::POST(std::string req,std::string params) {
 	std::cout << "request: " << request << std::endl;
 	std::cout << "params: " << params << std::endl;
 
+	//curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL, request.c_str());
 	curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
 	curl_easy_setopt(curl, CURLOPT_TIMEOUT,10);
@@ -161,23 +163,13 @@ Order Tradeapi::submit_order(std::string symbol, int qty, std::string side, std:
 std::vector<Order> Tradeapi::list_orders(std::string status="open", int limit, std::string after,
                                                std::string until, std::string direction) {
 	//todo: Move out into function
-	/*
-	Json::Value data;
-	data["status"] = status;
-	data["limit"] = limit;
-	data["after"] = after;
-	data["until"] = until;
-	data["direction"] = direction;
-
-	Json::StreamWriterBuilder builder;
-	builder["indentation"] = "";
-	std::string params = Json::writeString(builder,data);
-	*/
-	std::string params = "?";
-	params += "status=open";
+	//std::string params = "?";
+	//params += "status=open";
+	std::vector<std::string> params;
+	params.push_back("status="+status);
 
 	Json::Value resp;
-	resp = GET("/orders",params);
+	resp = GET("/orders",build_params(params));
 	std::vector<Order> noot(std::begin(resp), std::end(resp));
 	return noot;
 }
@@ -188,6 +180,7 @@ Order Tradeapi::get_order(std::string order_id) {
 }
 
 Order Tradeapi::get_order_by_client_order_id(std::string client_order_id) {
+	std::cout << "get_order_by_client_order\n";
 	std::vector<std::string> params;
 	params.push_back("client_order_id="+client_order_id);
 

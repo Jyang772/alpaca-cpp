@@ -41,6 +41,8 @@ class Tradeapi {
 
 		//Construct GET URL w/ parameters
 		std::string build_params(std::vector<std::string> params);
+		//Build JSON string
+		std::string build_json(std::vector<std::string> params);
 
 		//Authentication
 		std::string EndPoint;
