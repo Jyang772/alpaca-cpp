@@ -24,12 +24,15 @@ std::string Tradeapi::build_params(std::vector<std::string> params) {
 	return ret;
 }
 
-Json::Value Tradeapi::GET(std::string req,std::string params) {
+Json::Value Tradeapi::GET(std::string req,std::string params,std::string endpoint) {
 
 	std::string request;
 	Json::Value jsonData;
 
-	request = base_url + req + params;
+	if(endpoint.size() > 0)
+		request = "https://" + endpoint + req + params;
+	else
+		request = base_url + req + params;
 
 	std::cout << "request: " + request << std::endl;
 
@@ -279,4 +282,22 @@ std::vector<Asset> Tradeapi::list_assets(std::string status, std::string asset_c
 Asset Tradeapi::get_asset(std::string symbol) {
 	Json::Value resp = GET("/assets/"+symbol);
 	return Asset(resp);
+}
+
+std::vector<Bar> Tradeapi::get_barset(std::vector<std::string> symbols, std::string timeframe, std::string limit,
+			              std::string start, std::string end, std::string after, std::string until) {
+
+	std::string params = "?symbols=";
+	for(int i=0; i<symbols.size(); i++) {
+		params += symbols[i];
+		if(i < symbols.size()-1)
+			params += ",";
+	}
+		
+
+	Json::Value resp = GET("/bars/"+timeframe,params,"data.alpaca.markets/v1/");
+	std::cout << "BUNNY" << std::endl;
+	Json::Value::ArrayIndex i = 0;
+	std::vector<Bar> noot(std::begin(resp[symbols[0]]),std::end(resp[symbols[0]]));
+	return noot;
 }

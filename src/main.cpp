@@ -51,6 +51,11 @@ int main() {
 	//auto assets = api.list_assets();
 	//std::cout << assets.size() << std::endl;
 	//auto asset = api.get_asset("TSLA");
+	//
+	std::vector<std::string> symbols;
+	symbols.push_back("TSLA");
+	//auto bars = api.get_barset(symbols);
+	
 
 	return 0;
 }

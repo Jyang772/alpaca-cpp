@@ -13,7 +13,7 @@ class Bar {
 		double h;
 		double l;
 		double c;
-		double v	
+		double v;
 
 		//Keep Json
 		Json::Value json;

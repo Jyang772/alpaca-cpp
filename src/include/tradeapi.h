@@ -12,6 +12,7 @@
 #include "order.h"
 #include "position.h"
 #include "asset.h"
+#include "bar.h"
 
 class Tradeapi {
         public:
@@ -37,13 +38,18 @@ class Tradeapi {
 		/* Asset */
 		std::vector<Asset> list_assets(std::string status="active",std::string asset_class="us_equity");
 		Asset get_asset(std::string);
+
+		/* Bar */
+		std::vector<Bar> get_barset(std::vector<std::string> symbols,std::string timeframe="1D",
+					    std::string limit="",std::string start="",std::string end="", 
+					    std::string after="", std::string until="");
 		
 
         private:
 
                 //WebAPI
 		CURL *curl = NULL;
-		Json::Value GET(std::string,std::string params="");
+		Json::Value GET(std::string,std::string params="",std::string endpoint="");
 		Json::Value POST(std::string, std::string="");
 		Json::Value DELETE(std::string, std::string="");
 		

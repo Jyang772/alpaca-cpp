@@ -21,7 +21,7 @@ static    std::size_t callback(
 
 int main()
 {
-    std::string url("https://paper-api.alpaca.markets/v1/orders/2fd3f1c6-98ca-4f4c-a4d4-bda4d5765419");
+    std::string url("https://data.alpaca.markets/v1/bars/day?symbols=AAPL,TSLA");
 
    // std::string postdata;
     //postdata = "{\"symbol\":\"TSLA\",\"qty\":\"10\",\"side\":\"buy\",\"type\":\"market\",\"time_in_force\":\"day\"}";
@@ -65,7 +65,7 @@ int main()
 	chunk = curl_slist_append(chunk, "APCA-API-SECRET-KEY: us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp");
 
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER,chunk);
-	curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+	//curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 
     // Response information.
     long httpCode(0);
@@ -103,8 +103,9 @@ int main()
         {
             std::cout << "Successfully parsed JSON data" << std::endl;
             std::cout << "\nJSON data received:" << std::endl;
-            std::cout << jsonData.toStyledString() << std::endl;
-
+            //std::cout << jsonData.toStyledString() << std::endl;
+	    std::cout << jsonData.size() << std::endl;
+		
 	    std::cout << "noot" << std::endl;
 	    /*
             const std::string dateString(jsonData["date"].asString());
