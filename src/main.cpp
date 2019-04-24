@@ -35,6 +35,8 @@ int main() {
 
 	//Test get_order{order_id}
 	//auto order = api.get_order("889ec675-90ff-486e-9d0d-48e68e64c39b");
+	//
+	auto order = api.get_order_by_client_order_id("18b1cd8e-169a-4cf7-9d75-c1e0ac14ce4d");
 
 
 	return 0;

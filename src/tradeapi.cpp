@@ -187,3 +187,11 @@ Order Tradeapi::get_order(std::string order_id) {
 	return Order(resp);
 }
 
+Order Tradeapi::get_order_by_client_order_id(std::string client_order_id) {
+	std::vector<std::string> params;
+	params.push_back("client_order_id="+client_order_id);
+
+	Json::Value resp = GET("/orders:by_client_order_id",build_params(params));
+	return Order(resp);
+}
+

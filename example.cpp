@@ -21,11 +21,12 @@ static    std::size_t callback(
 
 int main()
 {
-    std::string url("https://paper-api.alpaca.markets/v1/orders");
+    std::string url("https://paper-api.alpaca.markets/v1/orders:by_client_order_id?client_order_id=18b1cd8e-169a-4cf7-9d75-c1e0ac14ce4d");
 
    // std::string postdata;
     //postdata = "{\"symbol\":\"TSLA\",\"qty\":\"10\",\"side\":\"buy\",\"type\":\"market\",\"time_in_force\":\"day\"}";
     //
+    
     Json::Value postdata;
     postdata["symbol"] = "TSLA";
     postdata["qty"] = "10";

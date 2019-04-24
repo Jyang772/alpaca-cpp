@@ -22,6 +22,7 @@ class Tradeapi {
 		std::vector<Order> list_orders(std::string status, int limit=50, std::string after="",
 					       std::string until="", std::string direction="");
 		Order get_order(std::string order_id);
+		Order get_order_by_client_order_id(std::string client_order_id);
                 void listPositions();
                 void sendRequest();
 
