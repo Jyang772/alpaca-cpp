@@ -1,25 +1,13 @@
 CXX      := -g++
-#CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
-CXXFLAGS :=
+CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
+CXXFLAGS := -Iinclude/
 LDFLAGS  := -L/usr/lib -lcurl -ljsoncpp
 TARGET   := main
+BUILD	 := build
 
-all: $(TARGET)
-
-main: main.o tradeapi.o account.o order.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o tradeapi.o account.o order.o -o $(TARGET)
-
-main.o: main.cpp main.o
-	$(CXX) $(CXXFLAGS) -c main.cpp
-
-tradeapi.o: tradeapi.cpp tradeapi.h
-	$(CXX) $(CXXFLAGS) -c tradeapi.cpp
-
-account.o: account.cpp account.h
-	$(CXX) $(CXXFLAGS) -c account.cpp
-
-order.o: order.cpp order.h
-	$(CXX) $(CXXFLAGS) -c order.cpp
+all:
+	+$(MAKE) -C src
 
 clean:
 	rm -f $(TARGET) *.o *~
+	+$(MAKE) -C src clean
