@@ -7,9 +7,7 @@
 
 #include <curl/curl.h>
 #include <json/json.h>
-namespace
-{
-    std::size_t callback(
+static    std::size_t callback(
             const char* in,
             std::size_t size,
             std::size_t num,
@@ -19,7 +17,6 @@ namespace
         *((std::stringstream*) out) << data;
         return size * num;        
     }
-}
 
 int main()
 {
@@ -28,7 +25,7 @@ int main()
     CURL* curl = curl_easy_init();
 
     // Set remote URL.
-    curl_easy_setopt(curl, CURLOPT_URL,"https://paper-api.alpaca.markets/v1/positions" );
+    curl_easy_setopt(curl, CURLOPT_URL,"https://paper-api.alpaca.markets/v1/account" );
 
     // Don't bother trying IPv6, which would increase DNS resolution time.
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -40,7 +37,7 @@ int main()
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
 	struct curl_slist *chunk = NULL;
-	chunk = curl_slist_append(chunk, "APCA-API-KEY-ID: PK899PYO6YVTYMU4TBYS");
+	chunk = curl_slist_append(chunk, "APCA-API-KEY-ID: PK899PYO6YVTYMU4TBYd");
 	chunk = curl_slist_append(chunk, "APCA-API-SECRET-KEY: soDqkLmkGEmjk2PWKx4LX3Gejg3qqRLP4lwLVpv4");
 
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER,chunk);
@@ -65,6 +62,7 @@ int main()
     curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
     curl_easy_cleanup(curl);
 
+    std::cout << "httpCode: " << httpCode << std::endl;
     if (httpCode == 200)
     {
         std::cout << "\nGot successful response from " << url << std::endl;
