@@ -41,7 +41,7 @@ class Tradeapi {
 
 		/* Bar */
 		std::vector<Bar> get_barset(std::vector<std::string> symbols,std::string timeframe="1D",
-					    std::string limit="",std::string start="",std::string end="", 
+					    int limit=100,std::string start="",std::string end="", 
 					    std::string after="", std::string until="");
 		
 

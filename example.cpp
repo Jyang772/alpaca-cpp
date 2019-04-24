@@ -21,7 +21,7 @@ static    std::size_t callback(
 
 int main()
 {
-    std::string url("https://data.alpaca.markets/v1/bars/day?symbols=AAPL,TSLA");
+    std::string url("https://data.alpaca.markets/v1/bars/day?symbols=TSLA,AAPL,POT");
 
    // std::string postdata;
     //postdata = "{\"symbol\":\"TSLA\",\"qty\":\"10\",\"side\":\"buy\",\"type\":\"market\",\"time_in_force\":\"day\"}";
@@ -105,6 +105,9 @@ int main()
             std::cout << "\nJSON data received:" << std::endl;
             //std::cout << jsonData.toStyledString() << std::endl;
 	    std::cout << jsonData.size() << std::endl;
+
+	    std::vector<Json::Value> noot(std::begin(jsonData),std::end(jsonData));
+	    std::cout << jsonData["AAPL"][0]["t"] << std::endl;
 		
 	    std::cout << "noot" << std::endl;
 	    /*
