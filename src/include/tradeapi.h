@@ -23,15 +23,15 @@ class Tradeapi {
 					       std::string until="", std::string direction="");
 		Order get_order(std::string order_id);
 		Order get_order_by_client_order_id(std::string client_order_id);
-                void listPositions();
-                void sendRequest();
+		void cancel_order(std::string order_id);
 
         private:
 
                 //WebAPI
 		CURL *curl = NULL;
 		Json::Value GET(std::string,std::string params="");
-		Json::Value POST(std::string, std::string);
+		Json::Value POST(std::string, std::string="");
+		Json::Value DELETE(std::string, std::string="");
 		
 		static std::size_t callback(
 			    const char* in,
