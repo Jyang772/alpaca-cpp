@@ -6,8 +6,13 @@
 int main() {
 
 	std::cout << "hello" << std::endl;
+
+	std::string EndPoint = "paper-api.alpaca.markets";
+	std::string KeyID = "PKPUURFL462XO9XA1JW8";
+	std::string SecretKey = "us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp";
+
 	Tradeapi api;
-	api.init("paper-api.alpaca.markets","PKPUURFL462XO9XA1JW8","us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp");
+	api.init(EndPoint,KeyID,SecretKey);
 	auto s = api.getAccount();
 
 	std::cout << s.status << std::endl;

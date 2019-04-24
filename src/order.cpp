@@ -1,7 +1,6 @@
 #include "order.h"
 
 Order::Order(Json::Value data) {
-
 	id = data["id"].asString();
 	client_order_id = data["client_order_id"].asString();
 	created_at = data["created_at"].asString();

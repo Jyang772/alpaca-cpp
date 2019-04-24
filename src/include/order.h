@@ -1,3 +1,6 @@
+#ifndef ORDER
+#define ORDER
+
 #include <json/json.h>
 
 class Order {
@@ -25,3 +28,5 @@ class Order {
 		std::string status;
 
 };
+
+#endif

@@ -1,0 +1,3 @@
+When defining the callback function in Tradeapi.h
+
+https://stackoverflow.com/questions/10268660/multiple-definition-of-class-method

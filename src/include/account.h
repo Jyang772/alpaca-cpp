@@ -1,3 +1,6 @@
+#ifndef ACCOUNT
+#define ACCOUNT
+
 #include <json/json.h>
 
 class Account {
@@ -20,3 +23,4 @@ class Account {
 		std::string id;
 };
 
+#endif
