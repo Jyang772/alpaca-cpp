@@ -11,6 +11,7 @@
 #include "account.h"
 #include "order.h"
 #include "position.h"
+#include "asset.h"
 
 class Tradeapi {
         public:
@@ -32,6 +33,9 @@ class Tradeapi {
 		/* Positions */
 		std::vector<Position> list_positions();
 		Position get_position(std::string);
+
+		/* Asset */
+		std::vector<Asset> list_assets(std::string status="active",std::string asset_class="us_equity");
 		
 
         private:

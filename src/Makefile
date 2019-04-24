@@ -7,8 +7,8 @@ BUILD    := ..
 
 all: $(TARGET)
 
-main: main.o tradeapi.o account.o order.o position.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o tradeapi.o account.o order.o position.o \
+main: main.o tradeapi.o account.o order.o position.o asset.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o tradeapi.o account.o order.o position.o asset.o \
 		-o $(BUILD)/$(TARGET) 
 
 main.o: main.cpp 
@@ -26,5 +26,7 @@ order.o: order.cpp
 position.o: position.cpp
 	$(CXX) $(CXXFLAGS) -c position.cpp
 
+asset.o: asset.cpp
+	$(CXX) $(CXXFLAGS) -c asset.cpp
 clean:
 	rm -f $(TARGET) *.o *~

@@ -265,3 +265,14 @@ Position Tradeapi::get_position(std::string symbol) {
 	return Position(resp);
 }
 
+std::vector<Asset> Tradeapi::list_assets(std::string status, std::string asset_class) {
+
+	std::vector<std::string> params;
+	params.push_back("status="+status);
+	params.push_back("asset_class="+asset_class);
+	Json::Value resp = GET("/assets",build_params(params));
+
+	std::vector<Asset> noot(std::begin(resp),std::end(resp));
+	return noot;
+}
+

@@ -27,7 +27,7 @@ int main() {
 
 
 	//Test submit_order
-	//auto order = api.submit_order("TSLA",10,"buy","market","day",250);
+	//auto order = api.submit_order("TSLA",5,"buy","market","day");
 	//std::cout << order.symbol << std::endl;
 
 	//Test list_orders
@@ -47,6 +47,9 @@ int main() {
 	std::cout << positions[0].symbol << std::endl;
 
 	auto position = api.get_position("TSLA");
+
+	//auto assets = api.list_assets();
+	//std::cout << assets.size() << std::endl;
 
 	return 0;
 }
