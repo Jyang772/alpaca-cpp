@@ -64,6 +64,7 @@ int main() {
 
 
 	std::vector<Bar> tsla_bars(std::begin(bars["TSLA"]),std::end(bars["TSLA"]));
+	printf("TSLA day's change: %.3f%\n",(tsla_bars.back().c - tsla_bars[0].c)/tsla_bars[0].c * 100);
 	/*
 	printf("TSLA BARS: \n");
 	for(int i=tsla_bars.size()-1; i>=990; i--)
