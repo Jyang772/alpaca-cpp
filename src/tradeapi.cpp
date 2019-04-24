@@ -13,6 +13,17 @@ Tradeapi::~Tradeapi() {
 	curl_easy_cleanup(curl);
 }
 
+std::string Tradeapi::build_params(std::vector<std::string> params) {
+
+	std::string ret = "?";	
+	for(int i=0; i<params.size(); i++) {
+		if(i > 0)
+			ret += "&";
+		ret += params[i];
+	}
+	return ret;
+}
+
 Json::Value Tradeapi::GET(std::string req,std::string params) {
 
 	std::string request;
@@ -171,5 +182,8 @@ std::vector<Order> Tradeapi::list_orders(std::string status="open", int limit, s
 	return noot;
 }
 
-
+Order Tradeapi::get_order(std::string order_id) {
+	Json::Value resp = GET("/orders/" + order_id);	
+	return Order(resp);
+}
 

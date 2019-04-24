@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <list>
 #include <curl/curl.h>
 #include <json/json.h>
 
@@ -19,7 +20,8 @@ class Tradeapi {
 		Order submit_order(std::string, int qty, std::string, std::string, 
 				   std::string, double stop_price=0, std::string client_order_id = "");
 		std::vector<Order> list_orders(std::string status, int limit=50, std::string after="",
-					       std::string until="", std::string direction="");	
+					       std::string until="", std::string direction="");
+		Order get_order(std::string order_id);
                 void listPositions();
                 void sendRequest();
 
@@ -35,13 +37,9 @@ class Tradeapi {
 			    std::size_t size,
 			    std::size_t num,
 			    char* out);
-			/*
-		    {
-			std::string data(in, (std::size_t) size * num);
-			*((std::stringstream*) out) << data;
-			return size * num;
-		    }
-		    */
+
+		//Construct GET URL w/ parameters
+		std::string build_params(std::vector<std::string> params);
 
 		//Authentication
 		std::string EndPoint;
