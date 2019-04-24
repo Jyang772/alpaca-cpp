@@ -54,13 +54,20 @@ int main() {
 	//
 	std::vector<std::string> symbols;
 	symbols.push_back("TSLA");
+	symbols.push_back("AAPL");
 	auto bars = api.get_barset(symbols,"1Min",1000);
 
-	std::cout << "SIZE: " << bars.size() << std::endl;
+	//std::cout << "SIZE: " << bars.size() << std::endl;
 	/*for(int i=0; i<bars.size(); i++)
 		printf("%.2f\n",bars[i].c);
 	*/
-	
 
+
+	std::vector<Bar> tsla_bars(std::begin(bars["TSLA"]),std::end(bars["TSLA"]));
+	/*
+	printf("TSLA BARS: \n");
+	for(int i=tsla_bars.size()-1; i>=990; i--)
+		printf("%.2f\n",tsla_bars[i].c);
+	*/
 	return 0;
 }

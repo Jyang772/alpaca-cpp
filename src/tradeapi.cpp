@@ -284,7 +284,7 @@ Asset Tradeapi::get_asset(std::string symbol) {
 	return Asset(resp);
 }
 
-std::vector<Bar> Tradeapi::get_barset(std::vector<std::string> symbols, std::string timeframe, int limit,
+Json::Value/*std::vector<Bar>*/ Tradeapi::get_barset(std::vector<std::string> symbols, std::string timeframe, int limit,
 			              std::string start, std::string end, std::string after, std::string until) {
 
 	std::vector<std::string> params;
@@ -304,6 +304,9 @@ std::vector<Bar> Tradeapi::get_barset(std::vector<std::string> symbols, std::str
 
 	Json::Value resp = GET("/bars/"+timeframe,build_params(params),"data.alpaca.markets/v1");
 	//std::cout << "BUNNY" << std::endl;
-	std::vector<Bar> noot(std::begin(resp[symbols[0]]),std::end(resp[symbols[0]]));
-	return noot;
+	//std::vector<Bar> noot(std::begin(resp[symbols[0]]),std::end(resp[symbols[0]]));
+	//return noot;
+	//
+	
+	return resp;
 }

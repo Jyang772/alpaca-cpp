@@ -40,7 +40,7 @@ class Tradeapi {
 		Asset get_asset(std::string);
 
 		/* Bar */
-		std::vector<Bar> get_barset(std::vector<std::string> symbols,std::string timeframe="1D",
+		Json::Value/*std::vector<Bar>*/ get_barset(std::vector<std::string> symbols,std::string timeframe="1D",
 					    int limit=100,std::string start="",std::string end="", 
 					    std::string after="", std::string until="");
 		
