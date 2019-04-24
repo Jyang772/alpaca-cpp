@@ -253,3 +253,10 @@ void Tradeapi::cancel_order(std::string order_id) {
 	return;	
 }
 
+std::vector<Position> Tradeapi::list_positions() {
+	Json::Value resp = GET("/positions");
+
+	std::vector<Position> noot(std::begin(resp),std::end(resp)); 
+	return noot;
+}
+

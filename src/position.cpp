@@ -1,12 +1,12 @@
 #include "position.h"
 
 Position::Position(Json::Value data) {
-	asset_id = data["asset_id"].toString();
-	symbol = data["symbol"].toString();
-	exchange = data["exchange"].toString();
-	asset_class = data["asset_class"].toString();
-	avg_entry_price = std::stod(data["avg_entry_price"].toString());
-	qty = std::stod(data["qty"].toString());
+	asset_id = data["asset_id"].asString();
+	symbol = data["symbol"].asString();
+	exchange = data["exchange"].asString();
+	asset_class = data["asset_class"].asString();
+	avg_entry_price = std::stod(data["avg_entry_price"].asString());
+	qty = std::stod(data["qty"].asString());
 	std::string side;
 	double market_value;
 	double cost_basis;
@@ -18,7 +18,6 @@ Position::Position(Json::Value data) {
 	double current_price;
 	double lastday_price;
 	double change_today;
-
-
-
+	
+	json = data;
 }

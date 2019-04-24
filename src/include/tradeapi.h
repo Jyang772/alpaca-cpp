@@ -30,7 +30,7 @@ class Tradeapi {
 		void cancel_order(std::string order_id);
 
 		/* Positions */
-		Position list_positions(); 
+		std::vector<Position> list_positions(); 
 		
 
         private:
