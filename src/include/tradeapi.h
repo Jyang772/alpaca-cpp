@@ -18,8 +18,8 @@ class Tradeapi {
 		Account getAccount();
 		Order submit_order(std::string, int qty, std::string, std::string, 
 				   std::string, double stop_price=0, std::string client_order_id = "");
-		std::vector<Order> list_orders(std::string status, int limit, std::string after,
-					       std::string until, std::string direction);	
+		std::vector<Order> list_orders(std::string status, int limit=50, std::string after="",
+					       std::string until="", std::string direction="");	
                 void listPositions();
                 void sendRequest();
 
@@ -27,7 +27,7 @@ class Tradeapi {
 
                 //WebAPI
 		CURL *curl = NULL;
-		Json::Value GET(std::string);
+		Json::Value GET(std::string,std::string params="");
 		Json::Value POST(std::string, std::string);
 		
 		static std::size_t callback(

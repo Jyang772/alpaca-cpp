@@ -16,4 +16,6 @@ Account::Account(Json::Value resp) {
 	trade_suspended_by_user = resp["trade_suspended_by_user"].asBool();
 	trading_blocked = resp["trading_blocked"].asBool();
 	transfers_blocked = resp["transfers_blocked"].asBool();
+
+	json = resp;
 }

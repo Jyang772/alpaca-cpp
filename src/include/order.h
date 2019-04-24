@@ -27,6 +27,9 @@ class Order {
 		double stop_price;
 		std::string status;
 
+		//Keep Json
+		Json::Value json;
+
 };
 
 #endif

@@ -21,4 +21,6 @@ Order::Order(Json::Value data) {
 	limit_price = limit_price ? 0 : std::stod(data["limit_price"].asString());
 	stop_price = stop_price ? 0 : std::stod(data["stop_price"].asString());
 	status = data["status"].asString();
+
+	json = data;
 }

@@ -13,13 +13,22 @@ int main() {
 
 	Tradeapi api;
 	api.init(EndPoint,KeyID,SecretKey);
+	
+/*	
+	//Test getAccount
 	auto s = api.getAccount();
-
 	std::cout << s.status << std::endl;
 	std::cout << s.buying_power << std::endl;
+	std::cout << s.json.toStyledString() << std::endl;
+*/
 
+	//Test submit_order
 	auto order = api.submit_order("TSLA",10,"buy","market","day");
 	std::cout << order.symbol << std::endl;
-		
+
+	//Test list_orders
+	auto orders = api.list_orders("open");
+	std::cout << orders[0].symbol << std::endl;
+	std::cout << orders[0].json.toStyledString() << std::endl;
 	return 0;
 }

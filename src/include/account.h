@@ -21,6 +21,8 @@ class Account {
 		std::string created_at;
 		std::string currency;
 		std::string id;
+
+		Json::Value json;
 };
 
 #endif

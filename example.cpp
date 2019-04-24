@@ -25,7 +25,7 @@ int main()
 
    // std::string postdata;
     //postdata = "{\"symbol\":\"TSLA\",\"qty\":\"10\",\"side\":\"buy\",\"type\":\"market\",\"time_in_force\":\"day\"}";
-
+    //
     Json::Value postdata;
     postdata["symbol"] = "TSLA";
     postdata["qty"] = "10";
@@ -46,7 +46,7 @@ int main()
     curl_easy_setopt(curl, CURLOPT_URL,url.c_str());
 
     //Set POST data
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, output.c_str());
+    //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, output.c_str());
     //curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, postdata.length());
     //curl_easy_setopt(curl, CURLOPT_POST, 1);
 
@@ -103,7 +103,8 @@ int main()
             std::cout << "\nJSON data received:" << std::endl;
             std::cout << jsonData.toStyledString() << std::endl;
 
-	    //std::cout << noot << std::endl;
+	    std::cout << "noot" << std::endl;
+	    /*
             const std::string dateString(jsonData["date"].asString());
             const std::size_t unixTimeMs(
                     jsonData["milliseconds_since_epoch"].asUInt64());
@@ -114,6 +115,7 @@ int main()
             std::cout << "\tUnix timeMs: " << unixTimeMs << std::endl;
             std::cout << "\tTime string: " << timeString << std::endl;
             std::cout << std::endl;
+	    */
         }
         else
         {
