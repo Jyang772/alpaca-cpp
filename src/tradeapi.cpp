@@ -260,3 +260,8 @@ std::vector<Position> Tradeapi::list_positions() {
 	return noot;
 }
 
+Position Tradeapi::get_position(std::string symbol) {
+	Json::Value resp = GET("/positions/" + symbol);
+	return Position(resp);
+}
+
