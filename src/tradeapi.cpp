@@ -297,6 +297,9 @@ std::vector<Bar> Tradeapi::get_barset(std::vector<std::string> symbols, std::str
 
 	params.push_back(symbols_list);
 	params.push_back("limit="+std::to_string(limit));
+	params.push_back("start="+start);
+	params.push_back("end="+end);
+	params.push_back("until="+until);
 
 
 	Json::Value resp = GET("/bars/"+timeframe,build_params(params),"data.alpaca.markets/v1");

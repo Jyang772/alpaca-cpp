@@ -57,8 +57,9 @@ int main() {
 	auto bars = api.get_barset(symbols,"1Min",1000);
 
 	std::cout << "SIZE: " << bars.size() << std::endl;
-	for(int i=0; i<bars.size(); i++)
+	/*for(int i=0; i<bars.size(); i++)
 		printf("%.2f\n",bars[i].c);
+	*/
 	
 
 	return 0;

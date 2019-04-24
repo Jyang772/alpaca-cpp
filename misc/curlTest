@@ -1,5 +1,5 @@
 curl -X GET \
-    -H "APCA-API-KEY-ID: PK899PYO6YVTYMU4TBYS" \
-    -H "APCA-API-SECRET-KEY: soDqkLmkGEmjk2PWKx4LX3Gejg3qqRLP4lwLVpv4"\
-    https://data.alpaca.markets/v1/bars/1Min?symbols=AAPL
+    -H "APCA-API-KEY-ID: PKPUURFL462XO9XA1JW8" \
+    -H "APCA-API-SECRET-KEY: us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp"\
+    https://data.alpaca.markets/v1/bars/1Min?symbols=AAPL&limit=10
 
