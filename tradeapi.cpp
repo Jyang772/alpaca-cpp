@@ -25,7 +25,7 @@ Json::Value Tradeapi::Get(std::string req) {
 
 	request = base_url + req;
 
-	std::cout << "request: " + request << std::endl;
+	//std::cout << "request: " + request << std::endl;
 
 	curl_easy_setopt(curl, CURLOPT_URL, request.c_str());
 	curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -53,17 +53,17 @@ Json::Value Tradeapi::Get(std::string req) {
 	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
 	curl_easy_cleanup(curl);
 
-	std::cout << "httpCode: " << httpCode << std::endl;
+	//std::cout << "httpCode: " << httpCode << std::endl;
 
 	if(httpCode==200) {
-		std::cout << "200" << std::endl;
+		//std::cout << "200" << std::endl;
 		//Json::Value jsonData;
 		Json::CharReaderBuilder jsonReader;
 		std::string errs;
 
 		if(Json::parseFromStream(jsonReader, httpData, &jsonData, &errs)) {
-			std::cout << "\nJSON data received: " << std::endl;
-			std::cout << jsonData.toStyledString() << std::endl;	
+			//std::cout << "\nJSON data received: " << std::endl;
+			//std::cout << jsonData.toStyledString() << std::endl;	
 		}
 	}
 	return jsonData;
