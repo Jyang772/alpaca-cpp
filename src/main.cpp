@@ -11,7 +11,7 @@ int main() {
 	std::string KeyID = "PKPUURFL462XO9XA1JW8";
 	std::string SecretKey = "us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp";
 
-	Tradeapi api;
+	Tradeapi api; //REST
 	api.init(EndPoint,KeyID,SecretKey);
 	
 /*	
