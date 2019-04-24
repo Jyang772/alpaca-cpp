@@ -6,11 +6,11 @@ void Tradeapi::init(std::string EndPoint, std::string KeyID, std::string SecretK
 	this->SecretKey = SecretKey;	
 	this->base_url = "https://" + EndPoint + "/v1";
 
-	this->curl = curl_easy_init();
+	//this->curl = curl_easy_init();
 }
 
 Tradeapi::~Tradeapi() {
-	curl_easy_cleanup(curl);
+	//curl_easy_cleanup(curl);
 }
 
 std::string Tradeapi::build_params(std::vector<std::string> params) {
@@ -33,10 +33,10 @@ Json::Value Tradeapi::GET(std::string req,std::string params) {
 
 	std::cout << "request: " + request << std::endl;
 
-	//curl = curl_easy_init();
+	curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL, request.c_str());
 	curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT,10);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT,20);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
 	struct curl_slist *chunk = NULL;
@@ -58,9 +58,9 @@ Json::Value Tradeapi::GET(std::string req,std::string params) {
 
 	curl_easy_perform(curl);
 	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-	//curl_easy_cleanup(curl);
+	curl_easy_cleanup(curl);
 
-	//std::cout << "httpCode: " << httpCode << std::endl;
+	std::cout << "httpCode: " << httpCode << std::endl;
 
 	if(httpCode==200) {
 		//std::cout << "200" << std::endl;
@@ -86,10 +86,10 @@ Json::Value Tradeapi::POST(std::string req,std::string params) {
 	std::cout << "request: " << request << std::endl;
 	std::cout << "params: " << params << std::endl;
 
-	//curl = curl_easy_init();
+	curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL, request.c_str());
 	curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT,10);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT,20);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
 	struct curl_slist *chunk = NULL;
@@ -113,7 +113,7 @@ Json::Value Tradeapi::POST(std::string req,std::string params) {
 
 	curl_easy_perform(curl);
 	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-	//curl_easy_cleanup(curl);
+	curl_easy_cleanup(curl);
 
 	std::cout << "httpCode: " << httpCode << std::endl;
 
@@ -176,6 +176,7 @@ std::vector<Order> Tradeapi::list_orders(std::string status="open", int limit, s
 
 Order Tradeapi::get_order(std::string order_id) {
 	Json::Value resp = GET("/orders/" + order_id);	
+	//Json::Value resp;	
 	return Order(resp);
 }
 
