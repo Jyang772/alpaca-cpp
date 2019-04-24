@@ -7,12 +7,13 @@ int main() {
 
 	std::cout << "hello" << std::endl;
 	Tradeapi api;
-	api.init("paper-api.alpaca.markets","PK899PYO6YVTYMU4TBYS","soDqkLmkGEmjk2PWKx4LX3Gejg3qqRLP4lwLVpv4");
+	api.init("paper-api.alpaca.markets","PKPUURFL462XO9XA1JW8","us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp");
 	auto s = api.getAccount();
-	//api.submit_order();
 
 	std::cout << s.status << std::endl;
 	std::cout << s.buying_power << std::endl;
+
+	api.submit_order("TSLA",10,"buy","market","day");
 		
 	return 0;
 }

@@ -10,19 +10,20 @@
 class Tradeapi {
         public:
                 void init(std::string, std::string, std::string);
+		~Tradeapi();
 		//Json::Value getAccount();
 		Account getAccount();
-		Order submit_order(std::string, int qty, std::string, std::string, std::string, double, std::string client_order_id=0);
+		Order submit_order(std::string, int qty, std::string, std::string, std::string, double stop_price=0, std::string client_order_id = "");
                 void listPositions();
                 void sendRequest();
         private:
 
                 //WebAPI
 		CURL *curl = NULL;
-		Json::Value Get(std::string);
-		Json::Value Post(std::string);
+		Json::Value GET(std::string);
+		Json::Value POST(std::string, std::string);
 
-		    static std::size_t callback(
+		static std::size_t callback(
 			    const char* in,
 			    std::size_t size,
 			    std::size_t num,

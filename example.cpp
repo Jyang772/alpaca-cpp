@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 #include <curl/curl.h>
 #include <json/json.h>
@@ -20,15 +21,34 @@ static    std::size_t callback(
 
 int main()
 {
-    std::string url("https://data.alpaca.markets/v1/bars/1D");
-    //url += "?symbols=AAPL";
+    std::string url("https://paper-api.alpaca.markets/v1/orders");
+
+   // std::string postdata;
+    //postdata = "{\"symbol\":\"TSLA\",\"qty\":\"10\",\"side\":\"buy\",\"type\":\"market\",\"time_in_force\":\"day\"}";
+
+    Json::Value postdata;
+    postdata["symbol"] = "TSLA";
+    postdata["qty"] = "10";
+    postdata["side"] = "buy";
+    postdata["type"] = "market";
+    postdata["time_in_force"] = "day";
 
     std::cout << url.c_str() << std::endl;
+
+	Json::StreamWriterBuilder builder;
+	builder["indentation"] = ""; // If you want whitespace-less output
+	const std::string output = Json::writeString(builder, postdata);
+	std::cout << output << std::endl;
 
     CURL* curl = curl_easy_init();
 
     // Set remote URL.
     curl_easy_setopt(curl, CURLOPT_URL,url.c_str());
+
+    //Set POST data
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, output.c_str());
+    //curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, postdata.length());
+    //curl_easy_setopt(curl, CURLOPT_POST, 1);
 
     // Don't bother trying IPv6, which would increase DNS resolution time.
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -40,9 +60,8 @@ int main()
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
 	struct curl_slist *chunk = NULL;
-	chunk = curl_slist_append(chunk, "APCA-API-KEY-ID: PK899PYO6YVTYMU4TBYS");
-	chunk = curl_slist_append(chunk, "APCA-API-SECRET-KEY: soDqkLmkGEmjk2PWKx4LX3Gejg3qqRLP4lwLVpv4");
-	chunk = curl_slist_append(chunk, "symbols: AAPL");
+	chunk = curl_slist_append(chunk, "APCA-API-KEY-ID: PKPUURFL462XO9XA1JW8");
+	chunk = curl_slist_append(chunk, "APCA-API-SECRET-KEY: us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp");
 
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER,chunk);
 
