@@ -5,12 +5,14 @@
 #include <json/json.h>
 
 #include "account.h"
+#include "order.h"
 
 class Tradeapi {
         public:
                 void init(std::string, std::string, std::string);
 		//Json::Value getAccount();
 		Account getAccount();
+		Order submit_order();
                 void listPositions();
                 void sendRequest();
         private:

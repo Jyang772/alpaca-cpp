@@ -20,12 +20,15 @@ static    std::size_t callback(
 
 int main()
 {
-    const std::string url("https://paper-api.alpaca.markets/v1/account");
+    std::string url("https://data.alpaca.markets/v1/bars/1D");
+    //url += "?symbols=AAPL";
+
+    std::cout << url.c_str() << std::endl;
 
     CURL* curl = curl_easy_init();
 
     // Set remote URL.
-    curl_easy_setopt(curl, CURLOPT_URL,"https://paper-api.alpaca.markets/v1/account" );
+    curl_easy_setopt(curl, CURLOPT_URL,url.c_str());
 
     // Don't bother trying IPv6, which would increase DNS resolution time.
     curl_easy_setopt(curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
@@ -37,8 +40,9 @@ int main()
     curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
 	struct curl_slist *chunk = NULL;
-	chunk = curl_slist_append(chunk, "APCA-API-KEY-ID: PK899PYO6YVTYMU4TBYd");
+	chunk = curl_slist_append(chunk, "APCA-API-KEY-ID: PK899PYO6YVTYMU4TBYS");
 	chunk = curl_slist_append(chunk, "APCA-API-SECRET-KEY: soDqkLmkGEmjk2PWKx4LX3Gejg3qqRLP4lwLVpv4");
+	chunk = curl_slist_append(chunk, "symbols: AAPL");
 
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER,chunk);
 
