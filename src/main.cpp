@@ -13,7 +13,8 @@ int main() {
 	std::cout << s.status << std::endl;
 	std::cout << s.buying_power << std::endl;
 
-	api.submit_order("TSLA",10,"buy","market","day");
+	auto order = api.submit_order("TSLA",10,"buy","market","day");
+	std::cout << order.symbol << std::endl;
 		
 	return 0;
 }

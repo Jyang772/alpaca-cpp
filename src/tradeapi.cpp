@@ -144,5 +144,5 @@ Order Tradeapi::submit_order(std::string symbol, int qty, std::string side, std:
 	std::string params = Json::writeString(builder,data);
 
 	resp = POST("/orders",params);
-	return Order();
+	return Order(resp);
 }

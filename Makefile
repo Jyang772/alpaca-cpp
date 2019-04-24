@@ -9,5 +9,5 @@ all:
 	+$(MAKE) -C src
 
 clean:
-	rm -f $(TARGET) *.o *~
+	rm -f $(TARGET) *.o *~ *.out
 	+$(MAKE) -C src clean
