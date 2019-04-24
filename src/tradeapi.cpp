@@ -194,7 +194,7 @@ Account Tradeapi::getAccount() {
 	return Account(resp);
 }
 
-Order Tradeapi::submit_order(std::string symbol, int qty, std::string side, std::string type, std::string time_in_force, double stop_price, std::string client_order_id) {
+Order Tradeapi::submit_order(std::string symbol, int qty, std::string side, std::string type, std::string time_in_force, double limit_price,double stop_price, std::string client_order_id) {
 
 	std::cout << "submit_order" << std::endl;
 	Json::Value data;
@@ -205,6 +205,11 @@ Order Tradeapi::submit_order(std::string symbol, int qty, std::string side, std:
 	data["side"] = side;
 	data["type"] = type;
 	data["time_in_force"] = time_in_force;
+
+	if(type == "limit")	
+		data["limit_price"] = limit_price;
+	if(type == "stop" || type == "stop_limit")
+		data["stop_price"] = stop_price;
 
 	Json::StreamWriterBuilder builder;
 	builder["indentation"] = "";
@@ -244,7 +249,7 @@ Order Tradeapi::get_order_by_client_order_id(std::string client_order_id) {
 }
 
 void Tradeapi::cancel_order(std::string order_id) {
-	Json::Value resp = DELETE("/orders");
+	Json::Value resp = DELETE("/orders/" + order_id);
 	return;	
 }
 

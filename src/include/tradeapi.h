@@ -10,20 +10,28 @@
 
 #include "account.h"
 #include "order.h"
+#include "position.h"
 
 class Tradeapi {
         public:
                 void init(std::string, std::string, std::string);
 		~Tradeapi();
+		/* Account */
 		//Json::Value getAccount();
 		Account getAccount();
+
+		/* Orders */
 		Order submit_order(std::string, int qty, std::string, std::string, 
-				   std::string, double stop_price=0, std::string client_order_id = "");
+				   std::string, double limit_price=0, double stop_price=0, std::string client_order_id = "");
 		std::vector<Order> list_orders(std::string status, int limit=50, std::string after="",
 					       std::string until="", std::string direction="");
 		Order get_order(std::string order_id);
 		Order get_order_by_client_order_id(std::string client_order_id);
 		void cancel_order(std::string order_id);
+
+		/* Positions */
+		Position list_positions(); 
+		
 
         private:
 

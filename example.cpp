@@ -65,6 +65,7 @@ int main()
 	chunk = curl_slist_append(chunk, "APCA-API-SECRET-KEY: us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp");
 
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER,chunk);
+	curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 
     // Response information.
     long httpCode(0);
