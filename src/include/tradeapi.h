@@ -13,6 +13,7 @@
 #include "position.h"
 #include "asset.h"
 #include "bar.h"
+#include "clock.h"
 
 class Tradeapi {
         public:
@@ -43,6 +44,9 @@ class Tradeapi {
 		Json::Value/*std::vector<Bar>*/ get_barset(std::vector<std::string> symbols,std::string timeframe="1D",
 					    int limit=100,std::string start="",std::string end="", 
 					    std::string after="", std::string until="");
+
+		/* Clock */
+		Clock get_clock();
 		
 
         private:

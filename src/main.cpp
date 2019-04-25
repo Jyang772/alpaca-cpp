@@ -1,9 +1,21 @@
 #include <stdio.h>
 #include <iostream>
-
-#include "tradeapi.h"
-
 #include <unistd.h>
+#include <chrono>
+#include <sstream>
+#include <iomanip>
+#include <ctime>
+#include "tradeapi.h"
+#include "date.h"
+
+
+template <class Precision>
+std::string getISOCurrentTimestamp()
+{
+    auto now = std::chrono::system_clock::now();
+    return date::format("%FT%TZ", date::floor<Precision>(now));
+}
+
 
 int main() {
 
@@ -36,7 +48,6 @@ int main() {
 	//std::cout << orders[0].symbol << std::endl;
 	//std::cout << orders[0].json.toStyledString() << std::endl;
 	
-
 	auto orders = api.list_orders("open");
 	//Test get_order{order_id}
 	auto order_ = api.get_order("2fd3f1c6-98ca-4f4c-a4d4-bda4d5765419");
@@ -57,18 +68,22 @@ int main() {
 	symbols.push_back("AAPL");
 	auto bars = api.get_barset(symbols,"1Min",1000);
 
-	//std::cout << "SIZE: " << bars.size() << std::endl;
-	/*for(int i=0; i<bars.size(); i++)
-		printf("%.2f\n",bars[i].c);
-	*/
-
-
 	std::vector<Bar> tsla_bars(std::begin(bars["TSLA"]),std::end(bars["TSLA"]));
 	printf("TSLA day's change: %.3f%\n",(tsla_bars.back().c - tsla_bars[0].c)/tsla_bars[0].c * 100);
-	/*
+
 	printf("TSLA BARS: \n");
 	for(int i=tsla_bars.size()-1; i>=990; i--)
 		printf("%.2f\n",tsla_bars[i].c);
-	*/
+
+	auto clock = api.get_clock();
+	std::cout << clock.timestamp << std::endl;
+	std::cout << getISOCurrentTimestamp<std::chrono::microseconds>();
+	
+	struct std::tm tm;
+	std::istringstream ss(clock.timestamp);
+	ss >> std::get_time(&tm, "%Y-%m-%d"); // or just %T in this case
+	std::time_t time = mktime(&tm);
+
+
 	return 0;
 }

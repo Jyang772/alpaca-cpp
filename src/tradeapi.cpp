@@ -310,3 +310,8 @@ Json::Value/*std::vector<Bar>*/ Tradeapi::get_barset(std::vector<std::string> sy
 	
 	return resp;
 }
+
+Clock Tradeapi::get_clock() {
+	Json::Value resp = GET("/clock");
+	return Clock(resp);
+}
