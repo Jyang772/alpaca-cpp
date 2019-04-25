@@ -33,14 +33,14 @@ int main() {
 	//Tradeapi api; //REST
 	api.init(EndPoint,KeyID,SecretKey);
 	
-	
+/*	
 	//Test getAccount
-	/*
+	
 	auto s = api.getAccount();
 	std::cout << s.status << std::endl;
 	std::cout << s.buying_power << std::endl;
 	std::cout << s.json.toStyledString() << std::endl;
-	*/
+
 
 
 	//Test submit_order
@@ -68,6 +68,7 @@ int main() {
 	//std::cout << assets.size() << std::endl;
 	//auto asset = api.get_asset("TSLA");
 	//
+*/
 	std::vector<std::string> symbols;
 	symbols.push_back("TSLA");
 	auto bars = api.get_barset(symbols,"1Min",1000);
@@ -78,7 +79,6 @@ int main() {
 	printf("TSLA BARS: \n");
 	for(int i=tsla_bars.size()-1; i>=990; i--)
 		printf("%.2f\n",tsla_bars[i].c);
-
 
 	
 	auto clock = api.get_clock();
@@ -111,10 +111,10 @@ int main() {
 	DatePlusDays(ltm,-1);
 
 	std::stringstream stream;
-	stream << std::put_time(ltm, "%Y-%m-%d");
-	std::cout << stream.str() << std::endl;
+	stream << std::put_time(ltm, "%Y-%m-%d %H:%M:%S");
+	std::cout << "Now -1 day: " << stream.str() << std::endl;
 
-	prices(symbols);
+	//prices(symbols);
 
 	return 0;
 }
@@ -128,9 +128,21 @@ void DatePlusDays( struct tm* date, int days )
     // Seconds since start of epoch
     time_t date_seconds = mktime( date ) + (days * ONE_DAY) ;
 
+    if(days < 0) {
+	date->tm_hour = 23;
+        date->tm_min = 59;
+        date->tm_sec = 0;
+    }
     // Update caller's date
     // Use localtime because mktime converts to UTC so may change date
     *date = *localtime( &date_seconds ) ; ;
+
+	if(days < 0) {
+		date->tm_hour = 23;
+		date->tm_min = 59;
+		date->tm_sec = 0;
+	}
+
 }
 
 void prices(std::vector<std::string> symbols) {
@@ -148,6 +160,9 @@ void prices(std::vector<std::string> symbols) {
 	NY.tm_hour = 9;
 	NY.tm_min = 30;
 
+	/* Subtract time now from 0930EST 
+	 * If the time now is greater 
+	 * */
 	std::string end_dt;
 	if(difftime(mktime(ltm),mktime(&NY)) > 0) {
 		DatePlusDays(ltm, -1);
