@@ -103,9 +103,10 @@ int main() {
 
 	std::vector<std::string> assetsToTrade;
 	assetsToTrade.push_back("SPY");
-	//assetsToTrade.push_back("MSFT");
-	//assetsToTrade.push_back("AAPL");
-	//assetsToTrade.push_back("NFLX");
+	assetsToTrade.push_back("MSFT");
+	assetsToTrade.push_back("AAPL");
+	assetsToTrade.push_back("NFLX");
+	assetsToTrade.push_back("TSLA");
 	double positionSizing = 0.25;
 
 	auto barset = api.get_barset(assetsToTrade,"15Min",100);
@@ -159,12 +160,18 @@ int main() {
 				double cashBalance = api.get_account().cash;
 				double targetPositionSize = cashBalance / (closeList.back() / positionSizing);
 				auto order = api.submit_order(assetsToTrade[i],targetPositionSize,"buy","market","gtc");
+				std::cout << order.qty << " shares of " << assetsToTrade[i] << " bought." << std::endl;
 			}
 		}
 		else {
 			auto openPosition = api.get_position(assetsToTrade[i]);
-			if(openPosition.qty > 0)
-				api.submit_order(assetsToTrade[i],openPosition.qty,"sell","market","gtc");	
+			if(openPosition.qty > 0) {
+				auto order = api.submit_order(assetsToTrade[i],openPosition.qty,"sell","market","gtc");
+				std::cout << order.qty << " shares sold." << std::endl;
+			}
+			else {
+				std::cout << "No open positions for: " << assetsToTrade[i] << std::endl;
+			}
 		}
 	}
 	

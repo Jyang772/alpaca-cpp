@@ -2,7 +2,7 @@ CXX      := -g++
 CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
 CXXFLAGS := -Iinclude/
 LDFLAGS  := -L/usr/lib -lcurl -ljsoncpp
-TARGET   := main
+TARGET   := sma
 BUILD	 := build
 
 all:
