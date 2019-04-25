@@ -5,6 +5,7 @@
 
 class Order {
 	public:
+		Order(){};
 		Order(Json::Value);
 		std::string id;
 		std::string client_order_id;

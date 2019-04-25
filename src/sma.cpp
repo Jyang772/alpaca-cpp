@@ -31,7 +31,6 @@ double getDeltaMovingAverage(double delta, std::list<double> listDeltaMA)
 }
 
 
-Tradeapi api;
 
 int main() {
 
@@ -41,7 +40,7 @@ int main() {
 	std::string KeyID = "PKPUURFL462XO9XA1JW8";
 	std::string SecretKey = "us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp";
 
-	//Tradeapi api; //REST
+	Tradeapi api; //REST
 	api.init(EndPoint,KeyID,SecretKey);
 	
 	
