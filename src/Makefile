@@ -2,18 +2,18 @@ CXX      := -g++
 CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
 CXXFLAGS := -Iinclude/
 LDFLAGS  := -L/usr/lib -lcurl -ljsoncpp
-TARGET   := sma
+TARGET   := main
 BUILD    := ..
 
 all: $(TARGET)
 
-sma: sma.o tradeapi.o account.o order.o position.o asset.o bar.o clock.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) sma.o tradeapi.o account.o order.o \
+main: main.o tradeapi.o account.o order.o position.o asset.o bar.o clock.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o tradeapi.o account.o order.o \
 		position.o asset.o bar.o clock.o \
 		-o $(BUILD)/$(TARGET) 
 
-sma.o: sma.cpp 
-	$(CXX) $(CXXFLAGS) -c sma.cpp
+main.o: main.cpp 
+	$(CXX) $(CXXFLAGS) -c main.cpp
 
 tradeapi.o: tradeapi.cpp 
 	$(CXX) $(CXXFLAGS) -c tradeapi.cpp

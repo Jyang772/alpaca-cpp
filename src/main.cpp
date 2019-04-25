@@ -60,7 +60,7 @@ int main() {
 	//api.cancel_order("25b61d81-fffd-49b1-aefb-09a7d94be86f");
 	
 	auto positions = api.list_positions();
-	std::cout << positions[0].symbol << std::endl;
+	//std::cout << positions[0].symbol << std::endl;
 
 	auto position = api.get_position("TSLA");
 
