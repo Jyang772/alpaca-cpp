@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/5947067/how-to-create-a-static-library-with-g
