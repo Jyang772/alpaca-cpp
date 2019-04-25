@@ -72,8 +72,8 @@ Json::Value Tradeapi::GET(std::string req,std::string params,std::string endpoin
 		std::string errs;
 
 		if(Json::parseFromStream(jsonReader, httpData, &jsonData, &errs)) {
-			std::cout << "\nJSON data received: " << std::endl;
-			std::cout << jsonData.toStyledString() << std::endl;	
+			//std::cout << "\nJSON data received: " << std::endl;
+			//std::cout << jsonData.toStyledString() << std::endl;	
 		}
 	}
 	return jsonData;
@@ -127,8 +127,8 @@ Json::Value Tradeapi::POST(std::string req,std::string params) {
 		std::string errs;
 
 		if(Json::parseFromStream(jsonReader, httpData, &jsonData, &errs)) {
-			std::cout << "\nJSON data received: " << std::endl;
-			std::cout << jsonData.toStyledString() << std::endl;	
+			//std::cout << "\nJSON data received: " << std::endl;
+			//std::cout << jsonData.toStyledString() << std::endl;	
 		}
 	}
 	return jsonData;
@@ -189,7 +189,7 @@ Json::Value Tradeapi::DELETE(std::string req,std::string params) {
 
 
 //Json::Value Tradeapi::getAccount() {
-Account Tradeapi::getAccount() {
+Account Tradeapi::get_account() {
 
 	Json::Value resp;
         resp = GET("/account");
@@ -265,6 +265,8 @@ std::vector<Position> Tradeapi::list_positions() {
 
 Position Tradeapi::get_position(std::string symbol) {
 	Json::Value resp = GET("/positions/" + symbol);
+	if(resp.isNull())
+		return Position(symbol); //no open positions
 	return Position(resp);
 }
 
@@ -291,7 +293,7 @@ Json::Value/*std::vector<Bar>*/ Tradeapi::get_barset(std::vector<std::string> sy
 	std::string symbols_list = "symbols=";
 	for(int i=0; i<symbols.size(); i++) {
 		symbols_list += symbols[i];
-		//if(i < symbols.size()-1)
+		if(i < symbols.size()-1)
 		symbols_list += ",";
 	}
 

@@ -3,7 +3,7 @@
 
 Bar::Bar(Json::Value data) {
 	
-	t = std::stod(data["t"].asString());
+	t = data["t"].asString();
 	o = std::stod(data["o"].asString());
 	h = std::stod(data["h"].asString());
 	l = std::stod(data["l"].asString());

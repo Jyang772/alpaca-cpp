@@ -5,6 +5,7 @@
 
 class Position {
 	public:
+		Position(std::string symbol);
 		Position(Json::Value);
 
 		std::string asset_id;

@@ -21,7 +21,7 @@ class Tradeapi {
 		~Tradeapi();
 		/* Account */
 		//Json::Value getAccount();
-		Account getAccount();
+		Account get_account();
 
 		/* Orders */
 		Order submit_order(std::string, int qty, std::string, std::string, 

@@ -8,7 +8,7 @@ class Bar {
 		Bar(Json::Value);
 		
 		std::string symbol;
-		int t;
+		std::string t;
 		double o;
 		double h;
 		double l;

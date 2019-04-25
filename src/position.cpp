@@ -1,5 +1,11 @@
 #include "position.h"
 
+Position::Position(std::string symbol) {
+	
+	this->symbol = symbol;
+	qty = 0;
+}
+
 Position::Position(Json::Value data) {
 	asset_id = data["asset_id"].asString();
 	symbol = data["symbol"].asString();
