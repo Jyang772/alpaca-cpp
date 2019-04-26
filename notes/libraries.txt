@@ -1,1 +1,3 @@
 https://stackoverflow.com/questions/5947067/how-to-create-a-static-library-with-g
+
+https://stackoverflow.com/questions/2112055/linking-c-library-with-non-standard-name
