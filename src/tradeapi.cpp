@@ -319,3 +319,14 @@ Clock Tradeapi::get_clock() {
 	Json::Value resp = GET("/clock");
 	return Clock(resp);
 }
+
+Json::Value Tradeapi::get_calendar(std::string start, std::string end) {
+
+	std::vector<std::string> params;
+	params.push_back("start="+start);
+	params.push_back("end="+end);
+	Json::Value resp = GET("/calendar",build_params(params));
+
+	return resp;
+	//return Calendar(resp);
+}

@@ -7,9 +7,9 @@ BUILD    := ..
 
 all: $(TARGET)
 
-sma: sma.o tradeapi.o account.o order.o position.o asset.o bar.o clock.o
+sma: sma.o tradeapi.o account.o order.o position.o asset.o bar.o clock.o calendar.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) sma.o tradeapi.o account.o order.o \
-		position.o asset.o bar.o clock.o \
+		position.o asset.o bar.o clock.o calendar.o \
 		-o $(BUILD)/$(TARGET) 
 
 sma.o: sma.cpp 
@@ -35,6 +35,9 @@ bar.o: bar.cpp
 
 clock.o: clock.cpp
 	$(CXX) $(CXXFLAGS) -c clock.cpp
+
+calendar.o: calendar.cpp
+	$(CXX) $(CXXFLAGS) -c calendar.cpp
 
 clean:
 	rm -f $(TARGET) *.o *~

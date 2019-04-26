@@ -14,6 +14,7 @@
 #include "asset.h"
 #include "bar.h"
 #include "clock.h"
+#include "calendar.h"
 
 class Tradeapi {
         public:
@@ -47,6 +48,9 @@ class Tradeapi {
 
 		/* Clock */
 		Clock get_clock();
+
+		/* Calendar */
+		Json::Value get_calendar(std::string start="",std::string end="");
 		
 
         private:

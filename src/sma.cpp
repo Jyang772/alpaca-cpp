@@ -70,7 +70,7 @@ int main() {
 	//api.cancel_order("25b61d81-fffd-49b1-aefb-09a7d94be86f");
 	
 	auto positions = api.list_positions();
-	std::cout << positions[0].symbol << std::endl;
+	//std::cout << positions[0].symbol << std::endl;
 
 	auto position = api.get_position("TSLA");
 
@@ -174,6 +174,11 @@ int main() {
 		}
 	}
 	
+
+
+	auto calendar = Calendar(api.get_calendar("2019-04-25","2019-04-25")[0]);
+	std::cout << "The market opened at " << calendar.open << " and closed at " 
+		<< calendar.close << " on " << "2019-04-25" << std::endl;
 
 
 	return 0;
