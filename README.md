@@ -17,7 +17,7 @@ both REST and ~~streaming interfaces~~. For details of each API behavior,
 please see the online API document.
 
 ### REST example
-```python
+```c++
 #include "tradeapi.h"
 
 Tradeapi api;
@@ -27,6 +27,34 @@ auto positions = api.list_positions();
 std::cout << positions[0].symbol << std::endl;
 ```
 
+### Stream example
+```c++
+Stream s;
+s.init(); //Hook up callback handler
+s.connect("wss://paper-api.alpaca.markets/stream",KeyID,SecretKey);
+
+std::vector<std::string> streams;
+streams.push_back("trade_updates");
+streams.push_back("account_updates");
+
+s.subscribe(streams);
+
+//Do whatever with streamed data using callback handler defined in stream.cpp or ... be bad:
+Json::Value ret;
+while(1) {
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+
+  while(s.logged.size() > 0) {
+    ret = s.logged.front();
+    std::cout << "Stream: " << ret["stream"] << std::endl;
+    if(ret["stream"] == "trade_updates") {
+            std::cout << "Event: " << ret["data"]["event"] << std::endl;
+            std::cout << "Qty: " << ret["data"]["order"]["qty"] << std::endl;
+    }
+    s.logged.pop_front();
+  }
+}
+```
 
 ## API Document
 
