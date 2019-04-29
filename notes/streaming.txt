@@ -1,0 +1,1 @@
+Compile streaming example with these flags: -lboost_system -lcrypto -lssl -lcpprest -lpthread -ljsoncpp

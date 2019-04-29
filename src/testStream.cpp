@@ -54,12 +54,26 @@ int main() {
 
 	s.subscribe(streams);
 
+
+	Json::Value ret;
         while(1) {
         	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 		while(s.logged.size() > 0) {
+			ret = s.logged.front();
 			printf("NOOOT\n");
-			std::cout << s.logged.front().toStyledString() << std::endl;
+			std::cout << "Stream: " << ret["stream"] << std::endl;
+			if(ret["stream"] == "trade_updates") {
+				std::cout << "Event: " << ret["data"]["event"] << std::endl;
+				std::cout << "Qty: " << ret["data"]["order"]["qty"] << std::endl;
+			}
+			std::cout << ret.toStyledString();
+			/*
+			Json::StreamWriterBuilder builder;
+			builder["indentation"] = "";
+			std::string params = Json::writeString(builder,ret);
+			std::cout << params << std::endl;
+			*/
 			s.logged.pop_front();
 		}
 	}

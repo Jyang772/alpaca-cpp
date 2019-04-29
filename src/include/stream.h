@@ -25,8 +25,9 @@ class Stream {
 
 		std::list<Json::Value> logged;
 	private:
-		web::websockets::client::websocket_callback_client client;
+		//int ret_data_count=0; 	// for seeking when storing data in ret_data buffer
 		//concurrency::streams::container_buffer<std::vector<uint8_t>> ret_data;
+		web::websockets::client::websocket_callback_client client;
 
 };
 

@@ -33,7 +33,7 @@ void Stream::init() {
 	{
 
 		//Parse server response, whether it is trade_update or account_update
-		//std::cout << msg.length() << std::endl;
+		std::cout << msg.length() << std::endl;
 		auto is = msg.body();
 		concurrency::streams::container_buffer<std::vector<uint8_t>> ret_data;
 		is.read_to_end(ret_data).wait();
@@ -41,6 +41,11 @@ void Stream::init() {
 		char bufStr[msg.length()+1];
 		memset(bufStr, 0, sizeof(bufStr));
 		memcpy(&bufStr[0], &(ret_data.collection())[0], msg.length());
+		//uncomment if you want to have a class instance with buffer of responses. 
+		//However, ret_data_count will increment to a large number if streaming a ton
+		//Instead, store responses in vector (or buffer) and let user pull from it
+		//memcpy(&bufStr[0], &(ret_data.collection())[0]+ret_data_count, msg.length());
+		//ret_data_count += msg.length();
 
 		Json::CharReaderBuilder readerBuilder;
 		Json::CharReader * reader = readerBuilder.newCharReader();
