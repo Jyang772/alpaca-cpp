@@ -15,6 +15,7 @@
 #include "bar.h"
 #include "clock.h"
 #include "calendar.h"
+#include "stream.h"
 
 class Tradeapi {
         public:

@@ -1,7 +1,7 @@
 CXX      := -g++
 CXXFLAGS := -pedantic-errors -Wall -Wextra -Werror
 CXXFLAGS := -Iinclude/
-LDFLAGS  := -L/usr/lib -lcurl -ljsoncpp
+LDFLAGS  := -L/usr/lib -lcurl -ljsoncpp -lboost_system -lcrypto -lssl -lcpprest -lpthread 
 TARGET   := sma
 BUILD    := ..
 
@@ -11,6 +11,14 @@ sma: sma.o tradeapi.o account.o order.o position.o asset.o bar.o clock.o calenda
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) sma.o tradeapi.o account.o order.o \
 		position.o asset.o bar.o clock.o calendar.o stream.o \
 		-o $(BUILD)/$(TARGET) 
+
+testStream: tradeapi.o account.o order.o position.o asset.o bar.o clock.o calendar.o stream.o testStream.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) tradeapi.o account.o order.o \
+                position.o asset.o bar.o clock.o calendar.o stream.o testStream.o \
+                -o $(BUILD)/testStream
+
+testStream.o: testStream.cpp
+	$(CXX) $(CXXFLAGS) -c testStream.cpp
 
 sma.o: sma.cpp 
 	$(CXX) $(CXXFLAGS) -c sma.cpp

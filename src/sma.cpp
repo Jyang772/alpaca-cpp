@@ -54,8 +54,8 @@ int main() {
 
 
 	//Test submit_order
-	//auto order = api.submit_order("TSLA",5,"buy","market","day");
-	//std::cout << order.symbol << std::endl;
+	auto order = api.submit_order("TSLA",5,"buy","market","day");
+	std::cout << order.symbol << std::endl;
 
 	//Test list_orders
 	
@@ -89,7 +89,6 @@ int main() {
 	printf("TSLA BARS: \n");
 	for(int i=tsla_bars.size()-1; i>=990; i--)
 		printf("%.2f\n",tsla_bars[i].c);
-
 
 	
 	auto clock = api.get_clock();
@@ -184,62 +183,4 @@ int main() {
 	return 0;
 }
 
-/*
-// Adjust date by a number of days +/-
-void DatePlusDays( struct tm* date, int days )
-{
-    const time_t ONE_DAY = 24 * 60 * 60 ;
-
-    // Seconds since start of epoch
-    time_t date_seconds = mktime( date ) + (days * ONE_DAY) ;
-
-    // Update caller's date
-    // Use localtime because mktime converts to UTC so may change date
-    *date = *localtime( &date_seconds ) ; ;
-}
-
-void prices(std::vector<std::string> symbols) {
-
-
-	//time now
-        time_t now = time(0);
-        tm *ltm = localtime(&now);
-
-	//time in NY
-	struct tm NY;
-	NY.tm_year = ltm->tm_year;
-	NY.tm_mon = ltm->tm_mon;
-	NY.tm_mday = ltm->tm_mday;
-	NY.tm_hour = 9;
-	NY.tm_min = 30;
-
-	std::string end_dt;
-	if(difftime(mktime(ltm),mktime(&NY)) > 0) {
-		DatePlusDays(ltm, -1);
-		std::stringstream stream;
-		stream << std::put_time(ltm,"%Y-%m-%d");
-		end_dt = stream.str();
-	}
-
-	return get_prices(symbols,ltm);
-}
-
-void get_prices(std::vector<std::string> symbols, tm* end_dt) {
-	
-	tm start_dt = *end_dt;
-	DatePlusDays(&start_dt,-50);
-
-	std::stringstream stream;
-	//start date
-	stream << std::put_time(&start_dt, "%Y-%m-%d");
-	std::string start = stream.str();
-
-	//end date
-	stream << std::put_time(end_dt, "%Y-%m-%d");
-	std::string end = stream.str();
-
-	auto barset = api.get_barset(symbols,"day",50,start,end);
-}
-
-*/
 
