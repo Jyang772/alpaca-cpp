@@ -13,7 +13,7 @@ $./sma
 C++ library for Alpaca trade API
 
 `alpaca-cpp` is a C++ library for the Alpaca trade API. It allows rapid trading algo development easily, with support for the
-both REST and ~~streaming interfaces~~. For details of each API behavior,
+both REST and streaming interfaces. For details of each API behavior,
 please see the online API document.
 
 ### REST example
