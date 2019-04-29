@@ -55,10 +55,15 @@ int main() {
 	s.subscribe(streams);
 
         while(1) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
-	
+        	std::this_thread::sleep_for(std::chrono::seconds(1));
 
+		while(s.logged.size() > 0) {
+			printf("NOOOT\n");
+			std::cout << s.logged.front().toStyledString() << std::endl;
+			s.logged.pop_front();
+		}
+	}
+	
 
 	return 0;
 }

@@ -7,6 +7,7 @@
 #include <sstream>
 #include <cpprest/ws_client.h>
 #include <json/json.h>
+#include <list>
 
 class Stream {
 	public:
@@ -16,14 +17,16 @@ class Stream {
 
 		void init();
 		void connect(std::string EndPoint, std::string KeyID, std::string SecretKey);
-		Json::Value subscribe(std::vector<std::string> streams);
+		void subscribe(std::vector<std::string> streams);
 		Json::Value account_updates();
-		Json::Value trade_updates();		
+		void trade_updates();		
 		//Keep Json
 		Json::Value json;
 
+		std::list<Json::Value> logged;
 	private:
 		web::websockets::client::websocket_callback_client client;
+		//concurrency::streams::container_buffer<std::vector<uint8_t>> ret_data;
 
 };
 
