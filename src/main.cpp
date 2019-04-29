@@ -42,11 +42,11 @@ int main() {
 	std::cout << s.json.toStyledString() << std::endl;
 
 
-
+*/
 	//Test submit_order
-	//auto order = api.submit_order("TSLA",5,"buy","market","day");
-	//std::cout << order.symbol << std::endl;
-
+	auto order = api.submit_order("TSLA",5,"buy","market","day");
+	std::cout << order.symbol << std::endl;
+/*
 	//Test list_orders
 	
 	//auto orders = api.list_orders("open");
