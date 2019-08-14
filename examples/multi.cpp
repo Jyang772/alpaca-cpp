@@ -18,6 +18,7 @@ int main() {
 	std::vector<std::thread> vt(n);
 	int x = 5;
 	int* p = &x;
+	printf("%d concurrent threads are supported.\n");
 	for(size_t i=0; i<n; i++)
 		vt[i] = std::thread(threadFunc,p); //must explicitly make a reference using ref(x)
 	
