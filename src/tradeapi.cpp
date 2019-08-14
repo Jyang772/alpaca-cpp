@@ -4,7 +4,7 @@ void Tradeapi::init(std::string EndPoint, std::string KeyID, std::string SecretK
 	this->EndPoint = EndPoint;
 	this->KeyID = KeyID;
 	this->SecretKey = SecretKey;	
-	this->base_url = "https://" + EndPoint + "/v1";
+	this->base_url = "https://" + EndPoint + "/v2";
 
 	//this->curl = curl_easy_init();
 }

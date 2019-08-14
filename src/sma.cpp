@@ -37,8 +37,8 @@ int main() {
 	std::cout << "hello" << std::endl;
 
 	std::string EndPoint = "paper-api.alpaca.markets";
-	std::string KeyID = "PKPUURFL462XO9XA1JW8";
-	std::string SecretKey = "us4YPXtDQ4pEm10Qbwd7hWBK8ggslXScdAgBmRFp";
+	std::string KeyID = "PKH4YCKT0OX8GSY5I04T";
+	std::string SecretKey = "RsTzgrs2HsOdiKuYlRVrwZVCv347AuMVPyOWH6bo";
 
 	Tradeapi api; //REST
 	api.init(EndPoint,KeyID,SecretKey);
